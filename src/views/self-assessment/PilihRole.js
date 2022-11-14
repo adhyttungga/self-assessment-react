@@ -12,37 +12,44 @@ import {
   CNavLink,
 } from '@coreui/react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import skill from './_skill'
 
 const PilihRole = () => {
+  const navigate = useNavigate()
   const selectedRole = useSelector((state) => state.selectedRole)
   const selectedSkillList = useSelector((state) => state.selectedSkillList)
+  const activeKey = useSelector((state) => state.activeKey)
   const dispatch = useDispatch()
-
-  const [activeKey, setActiveKey] = React.useState(1)
 
   const tabItem = (roleType) => {
     return (
       <>
         {skill &&
-          skill.map((item, i) => (
+          [...new Set(skill.map((element) => element.category))].map((item_1, i) => (
             <React.Fragment key={`cat_list_${i}`}>
-              <h3>{item.category}</h3>
+              <h3>{item_1}</h3>
 
               <CRow className="mb-3">
-                {item?.items &&
-                  item?.items.map((role, idx) => (
+                {skill &&
+                  [
+                    ...new Set(
+                      skill
+                        .filter((element) => element.category === item_1)
+                        .map((element) => element.role),
+                    ),
+                  ].map((item_2, idx) => (
                     <CCol key={`role_list_${idx}`} md={3} className="mb-2">
                       <CButton
                         color="info"
                         size="lg"
                         className="d-grid p-0"
                         style={{ width: '100%', height: '100%' }}
-                        onClick={() => handleRole(roleType, item.category, role.role)}
+                        onClick={() => handleRole(roleType, item_1, item_2)}
                       >
                         <CCard>
-                          <CCardBody>{role.role}</CCardBody>
+                          <CCardBody>{item_2}</CCardBody>
                         </CCard>
                       </CButton>
                     </CCol>
@@ -54,21 +61,7 @@ const PilihRole = () => {
     )
   }
 
-  const getRoleType = (value) => {
-    switch (value) {
-      case 1:
-        return 'utama'
-      case 2:
-        return 'tambahan'
-      case 3:
-        return 'minat'
-    }
-  }
-
   const handleRole = (roleType, category, role) => {
-    console.log(roleType)
-    console.log(role)
-
     if (selectedRole[roleType]?.category === category && selectedRole[roleType]?.role === role) {
       dispatch({
         type: 'set',
@@ -92,40 +85,39 @@ const PilihRole = () => {
     dispatch({ type: 'set', selectedSkillList: [] })
 
     if (activeKey === 1) {
+      navigate('/self-assessment/data-diri')
     } else {
-      setActiveKey(activeKey - 1)
+      dispatch({ type: 'set', activeKey: activeKey - 1 })
     }
   }
 
   const handleNext = () => {
     if (activeKey === 3) {
       const roleTypeList = Object.keys(selectedRole)
-      console.log(roleTypeList)
+      const selectedSkill = []
       roleTypeList &&
         roleTypeList.forEach((roleType) => {
-          const skillGroup = skill.find(
-            (item) => item.category === selectedRole[roleType]?.category,
-          )
-          const skillList = skillGroup?.items.find(
-            (item) => item.role === selectedRole[roleType]?.role,
-          )?.skill
-
+          const skillList = skill
+            .filter(
+              (element) =>
+                element.category === selectedRole[roleType]?.category &&
+                element.role === selectedRole[roleType]?.role,
+            )
+            .map((element) => element?.skill)
           console.log(skillList)
-
-          skillList &&
-            dispatch({ type: 'set', selectedSkillList: selectedSkillList.concat(skillList) })
+          selectedSkill.push(...skillList)
         })
+      console.log(selectedSkill)
+      dispatch({ type: 'set', selectedSkillList: selectedSkill })
+
+      navigate('/self-assessment/pilih-skill')
     } else {
-      setActiveKey(activeKey + 1)
+      dispatch({ type: 'set', activeKey: activeKey + 1 })
     }
   }
 
   return (
     <>
-      {console.log(selectedRole)}
-      {console.log(selectedSkillList)}
-      <h2>Pilih Role</h2>
-
       <CNav varant="tabs" role="tablist">
         <CNavItem>
           <CNavLink active={activeKey === 1}>1. Role Utama</CNavLink>
