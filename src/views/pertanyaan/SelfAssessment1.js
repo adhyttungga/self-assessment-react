@@ -50,7 +50,7 @@ const SelfAssessment1 = () => {
   }
 
   React.useEffect(() => {
-    if (selectedSkill?.length === 0 || localStorage.getItem('formDiri') === null) {
+    if (selectedSkill?.length === 0) {
       navigate('/self-assessment/data-diri')
     } else if (jawabanSA1?.length === 0) {
       const newListJawaban = listSoal.map((element) => {
