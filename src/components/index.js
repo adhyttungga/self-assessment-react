@@ -7,6 +7,10 @@ import AppSidebar from './AppSidebar'
 import DocsCallout from './DocsCallout'
 import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
+import SAContent from './SAContent'
+import SAHeader from './SAHeader'
+import PertanyaanContent from './PertanyaanContent'
+import PertanyaanHeader from './PertanyaanHeader'
 
 export {
   AppBreadcrumb,
@@ -18,4 +22,8 @@ export {
   DocsCallout,
   DocsLink,
   DocsExample,
+  SAContent,
+  SAHeader,
+  PertanyaanContent,
+  PertanyaanHeader,
 }
