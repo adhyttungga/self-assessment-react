@@ -1,29 +1,14 @@
 import React from 'react'
-import {
-  CHeader,
-  CHeaderBrand,
-  CForm,
-  CFormLabel,
-  CFormInput,
-  CFormSelect,
-  CRow,
-  CCol,
-  CButton,
-  CContainer,
-} from '@coreui/react'
+import { CForm, CFormLabel, CFormInput, CFormSelect, CRow, CCol, CButton } from '@coreui/react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import BRISVI from 'src/assets/images/BRIxSVI.png'
+import { useNavigate } from 'react-router-dom'
 
 import departemen from './_duj'
 
-const PilihRole = React.lazy(() => import('./PilihRole'))
-const PilihSkill = React.lazy(() => import('./PilihSkill'))
-
-const SelfAssessment = () => {
+const DataDiri = () => {
+  const navigate = useNavigate()
   const formDiri = useSelector((state) => state.formDiri)
   const dispatch = useDispatch()
-
   const department = [...new Set(departemen.map((item) => item.departemen))]
   const unit = [
     ...new Set(
@@ -32,69 +17,32 @@ const SelfAssessment = () => {
         ?.map((item) => item.fungsi),
     ),
   ]
+  const isiFormDiri = Object.values(formDiri)
 
   const handleSelect = (e) => {
     const id = e.target.id
     const value = e.target.value
 
-    dispatch({ type: 'set', formDiri: { ...formDiri, [id]: value } })
-
     if (id === 'department') {
-      dispatch({ type: 'set', formDiri: { ...formDiri, fungsi: '' } })
+      dispatch({ type: 'set', formDiri: { ...formDiri, [id]: value, fungsi: '' } })
+    } else {
+      dispatch({ type: 'set', formDiri: { ...formDiri, [id]: value } })
     }
   }
 
-  const handleSubmit = (e) => {}
+  const handleSubmit = (e) => {
+    navigate('/self-assessment/pilih-role')
+    localStorage.setItem('formDiri', JSON.stringify(formDiri))
+  }
+
+  React.useEffect(() => {
+    if (localStorage.getItem('formDiri')) {
+      dispatch({ type: 'set', formDiri: JSON.parse(localStorage.getItem('formDiri')) })
+    }
+  }, [])
 
   return (
     <>
-      <CHeader className="mb-4 border-0">
-        <div>
-          <CHeaderBrand className="mx-auto">
-            <img className="d-block w-100" src={BRISVI} alt="logo BRI x SVI" />
-          </CHeaderBrand>
-        </div>
-
-        <CContainer fluid>
-          <h2 className="flex-grow-1">Input Data Diri</h2>
-          <CRow className="rounded-pill border border-light">
-            <CCol xs={4}>
-              <div className="text-nowrap my-2 align-middle">
-                <span
-                  style={{ width: '1.5rem', height: '1.5rem' }}
-                  className="d-inline-block rounded-circle border border-light text-center align-middle"
-                >
-                  1
-                </span>
-                <span className="align-middle mx-2">Data Diri</span>
-              </div>
-            </CCol>
-            <CCol xs={4}>
-              <div className="text-nowrap my-2 align-middle">
-                <span
-                  style={{ width: '1.5rem', height: '1.5rem' }}
-                  className="d-inline-block rounded-circle border border-light text-center align-middle"
-                >
-                  2
-                </span>
-                <span className="align-middle mx-2">Pilih Role</span>
-              </div>
-            </CCol>
-            <CCol xs={4}>
-              <div className="text-nowrap my-2 align-middle">
-                <span
-                  style={{ width: '1.5rem', height: '1.5rem' }}
-                  className="d-inline-block rounded-circle border border-light text-center align-middle"
-                >
-                  3
-                </span>
-                <span className="align-middle mx-2">Pilih Skill</span>
-              </div>
-            </CCol>
-          </CRow>
-        </CContainer>
-      </CHeader>
-
       <CForm>
         <div className="mb-3">
           <CFormLabel htmlFor="namaPekerja" className="col-sm-2 col-form-label text-nowrap">
@@ -105,6 +53,7 @@ const SelfAssessment = () => {
             type="text"
             id="namaPekerja"
             placeholder="Masukan nama anda..."
+            value={formDiri.namaPekerja}
             onChange={handleSelect}
           />
         </div>
@@ -119,6 +68,7 @@ const SelfAssessment = () => {
               type="text"
               id="noPN"
               placeholder="Masukan no. PN anda..."
+              value={formDiri.noPN}
               onChange={handleSelect}
             />
           </CCol>
@@ -132,6 +82,7 @@ const SelfAssessment = () => {
               type="text"
               id="status"
               placeholder="Masukan status..."
+              value={formDiri.status}
               onChange={handleSelect}
             />
           </CCol>
@@ -145,7 +96,7 @@ const SelfAssessment = () => {
               id="department"
               name="department"
               onChange={handleSelect}
-              value={formDiri.departement}
+              value={formDiri.department}
             >
               <option value="">Pilih departemen anda...</option>
               {department.map((item, i) => (
@@ -180,6 +131,7 @@ const SelfAssessment = () => {
               type="email"
               id="email"
               placeholder="Masukan email anda..."
+              value={formDiri.email}
               onChange={handleSelect}
             />
           </CCol>
@@ -207,17 +159,18 @@ const SelfAssessment = () => {
         </CRow>
 
         <div className="mb-3 d-grid">
-          <CButton color="primary" size="lg">
+          <CButton
+            color="primary"
+            size="lg"
+            onClick={handleSubmit}
+            disabled={isiFormDiri.includes('')}
+          >
             Selanjutnya
           </CButton>
         </div>
       </CForm>
-
-      <PilihRole />
-
-      <PilihSkill />
     </>
   )
 }
 
-export default SelfAssessment
+export default DataDiri
