@@ -18,6 +18,11 @@ const initialState = {
   },
   selectedSkillList: [],
   selectedSkill: [],
+  activeKey: 1,
+  jawabanSA1: [],
+  jawabanSA2: [],
+  jawabanDUJT: [],
+  jawabanKT: [],
 }
 
 const changeState = (state = initialState, { type, ...rest }) => {
