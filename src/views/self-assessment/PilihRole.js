@@ -19,7 +19,6 @@ import skill from './_skill'
 const PilihRole = () => {
   const navigate = useNavigate()
   const selectedRole = useSelector((state) => state.selectedRole)
-  const selectedSkillList = useSelector((state) => state.selectedSkillList)
   const activeKey = useSelector((state) => state.activeKey)
   const dispatch = useDispatch()
 
@@ -104,12 +103,10 @@ const PilihRole = () => {
                 element.role === selectedRole[roleType]?.role,
             )
             .map((element) => element?.skill)
-          console.log(skillList)
           selectedSkill.push(...skillList)
         })
-      console.log(selectedSkill)
-      dispatch({ type: 'set', selectedSkillList: selectedSkill })
 
+      dispatch({ type: 'set', selectedSkillList: selectedSkill })
       navigate('/self-assessment/pilih-skill')
     } else {
       dispatch({ type: 'set', activeKey: activeKey + 1 })
