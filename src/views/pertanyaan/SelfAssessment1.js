@@ -1,10 +1,5 @@
 import React from 'react'
 import {
-  CHeader,
-  CHeaderBrand,
-  CContainer,
-  CRow,
-  CCol,
   CButton,
   CTable,
   CTableHead,
@@ -17,7 +12,6 @@ import {
   CCardBody,
   CCardFooter,
   CTooltip,
-  CFormInput,
   CFormTextarea,
 } from '@coreui/react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -140,13 +134,7 @@ const SelfAssessment1 = () => {
                                       name={item_2.job_desk}
                                       id={item_1}
                                       value={1}
-                                      defaultChecked={
-                                        jawabanSA1.find(
-                                          (element) =>
-                                            element.skill === item_1 &&
-                                            element.job_desk === item_2.job_desk,
-                                        )?.jawaban == 1
-                                      }
+                                      defaultChecked={item_2.jawaban == 1}
                                       onClick={(e) => handleRow(e, 'jawaban')}
                                     />
                                   </CTableDataCell>
@@ -157,13 +145,7 @@ const SelfAssessment1 = () => {
                                       name={item_2.job_desk}
                                       id={item_1}
                                       value={2}
-                                      defaultChecked={
-                                        jawabanSA1.find(
-                                          (element) =>
-                                            element.skill === item_1 &&
-                                            element.job_desk === item_2.job_desk,
-                                        )?.jawaban == 2
-                                      }
+                                      defaultChecked={item_2.jawaban == 2}
                                       onClick={(e) => handleRow(e, 'jawaban')}
                                     />
                                   </CTableDataCell>
@@ -174,13 +156,7 @@ const SelfAssessment1 = () => {
                                       name={item_2.job_desk}
                                       id={item_1}
                                       value={3}
-                                      defaultChecked={
-                                        jawabanSA1.find(
-                                          (element) =>
-                                            element.skill === item_1 &&
-                                            element.job_desk === item_2.job_desk,
-                                        )?.jawaban == 3
-                                      }
+                                      defaultChecked={item_2.jawaban == 3}
                                       onClick={(e) => handleRow(e, 'jawaban')}
                                     />
                                   </CTableDataCell>
@@ -191,13 +167,7 @@ const SelfAssessment1 = () => {
                                       name={item_2.job_desk}
                                       id={item_1}
                                       value={4}
-                                      defaultChecked={
-                                        jawabanSA1.find(
-                                          (element) =>
-                                            element.skill === item_1 &&
-                                            element.job_desk === item_2.job_desk,
-                                        )?.jawaban == 4
-                                      }
+                                      defaultChecked={item_2.jawaban == 4}
                                       onClick={(e) => handleRow(e, 'jawaban')}
                                     />
                                   </CTableDataCell>
@@ -208,13 +178,7 @@ const SelfAssessment1 = () => {
                                       name={item_2.job_desk}
                                       id={item_1}
                                       value={5}
-                                      defaultChecked={
-                                        jawabanSA1.find(
-                                          (element) =>
-                                            element.skill === item_1 &&
-                                            element.job_desk === item_2.job_desk,
-                                        )?.jawaban == 5
-                                      }
+                                      defaultChecked={item_2.jawaban == 5}
                                       onClick={(e) => handleRow(e, 'jawaban')}
                                     />
                                   </CTableDataCell>
@@ -225,13 +189,7 @@ const SelfAssessment1 = () => {
                                       name={item_2.job_desk}
                                       id={item_1}
                                       value={6}
-                                      defaultChecked={
-                                        jawabanSA1.find(
-                                          (element) =>
-                                            element.skill === item_1 &&
-                                            element.job_desk === item_2.job_desk,
-                                        )?.jawaban == 6
-                                      }
+                                      defaultChecked={item_2.jawaban == 6}
                                       onClick={(e) => handleRow(e, 'jawaban')}
                                     />
                                   </CTableDataCell>
@@ -241,13 +199,7 @@ const SelfAssessment1 = () => {
                                       rows={3}
                                       id={item_1}
                                       name={item_2.job_desk}
-                                      value={
-                                        jawabanSA1.find(
-                                          (element) =>
-                                            element.skill === item_1 &&
-                                            element.job_desk === item_2.job_desk,
-                                        )?.penjelasan || ''
-                                      }
+                                      value={item_2.penjelasan || ''}
                                       onChange={(e) => handleRow(e, 'penjelasan')}
                                     />
                                   </CTableDataCell>
