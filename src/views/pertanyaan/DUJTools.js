@@ -15,6 +15,14 @@ import {
   CTableRow,
   CTooltip,
   CFormTextarea,
+  CModal,
+  CModalBody,
+  CModalHeader,
+  CModalTitle,
+  CModalFooter,
+  CForm,
+  CFormLabel,
+  CFormInput,
 } from '@coreui/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -33,6 +41,17 @@ const DUJTools = () => {
     (element) => element.departemen === formDiri.department && element.fungsi === formDiri.fungsi,
   )
 
+  const [modal, setModal] = React.useState(false)
+  const [newPekerjaan, setNewPekerjaan] = React.useState({
+    departemen: '',
+    fungsi: '',
+    pekerjaan: '',
+    detail_pekerjaan: '',
+    ya_tidak: '',
+    ada_kesulitan: '',
+    tools: '',
+  })
+
   const handleRow = (e, type) => {
     const id = e.target.id
     const name = e.target.name
@@ -48,7 +67,19 @@ const DUJTools = () => {
     dispatch({ type: 'set', jawabanDUJT: newJawaban })
   }
 
+  const handleAdd = () => {
+    dispatch({ type: 'set', jawabanDUJT: jawabanDUJT.concat(newPekerjaan) })
+    setNewPekerjaan({ ...newPekerjaan, detail_pekerjaan: '', pekerjaan: '' })
+    setModal(false)
+  }
+
   React.useEffect(() => {
+    setNewPekerjaan({
+      ...newPekerjaan,
+      departemen: formDiri?.department || '',
+      fungsi: formDiri?.fungsi || '',
+    })
+
     if (Object.values(formDiri).includes('')) {
       navigate('/self-assessment/data-diri')
     } else if (jawabanDUJT?.length === 0) {
@@ -57,141 +88,172 @@ const DUJTools = () => {
   }, [])
 
   return (
-    <CCard className="mb-4 border-0">
-      {console.log('listSoal: ', listSoal)}
-      {console.log('jawaban: ', jawabanDUJT)}
-      {console.log('form-diri: ', formDiri)}
-      <CCardBody className="p-0">
-        <CTable>
-          <CTableHead className="align-middle">
-            <CTableRow>
-              <CTableHeaderCell style={{ width: '30%' }} scope="col">
-                Pekerjaan
-              </CTableHeaderCell>
+    <>
+      <CModal visible={modal} onClose={() => setModal(false)} backdrop={'static'}>
+        <CModalHeader>
+          <CModalTitle>Tambah Pekerjaan Lainnya</CModalTitle>
+        </CModalHeader>
 
-              <CTableHeaderCell style={{ width: '20%' }} scope="col">
-                Ya atau Tidak
-              </CTableHeaderCell>
+        <CModalBody>
+          <CForm>
+            <CFormLabel>Pekerjaan</CFormLabel>
 
-              <CTableHeaderCell style={{ width: '20%' }} scope="col">
-                Ada Kesulitan?
-              </CTableHeaderCell>
+            <CFormInput
+              type="text"
+              name="new_pekerjaan"
+              id="new_pekerjaan"
+              value={newPekerjaan.detail_pekerjaan}
+              onChange={(e) =>
+                setNewPekerjaan({
+                  ...newPekerjaan,
+                  detail_pekerjaan: e.target.value,
+                  pekerjaan: e.target.value,
+                })
+              }
+            />
+          </CForm>
+        </CModalBody>
 
-              <CTableHeaderCell style={{ width: '30%' }} scope="col">
-                Tools/Bahasa Pemrograman yang digunakan
-                <CTooltip
-                  content="Tool/Bahasa Pemrograman yang digunakan sekaligus level pengguanaan Anda (Basic, Intermediate, Advance) [Cara penulisan: Jira_basic, Kibana_inter, Golang_adv]"
-                  placement="bottom"
-                >
-                  <CIcon icon={cilInfo} size="sm" style={{ marginLeft: '.25rem' }} />
-                </CTooltip>
-              </CTableHeaderCell>
-            </CTableRow>
-          </CTableHead>
+        <CModalFooter>
+          <CButton color="info" onClick={handleAdd}>
+            Submit
+          </CButton>
+        </CModalFooter>
+      </CModal>
 
-          <CTableBody>
-            {jawabanDUJT &&
-              jawabanDUJT.map((element, i) => (
-                <CTableRow key={`duj_list_${i}`}>
-                  <CTableDataCell style={{ width: '30%' }}>
-                    {element.detail_pekerjaan}
-                  </CTableDataCell>
+      <CCard className="mb-4 border-0">
+        <CCardBody className="p-0">
+          <CTable>
+            <CTableHead className="align-middle">
+              <CTableRow>
+                <CTableHeaderCell style={{ width: '30%' }} scope="col">
+                  Pekerjaan
+                </CTableHeaderCell>
 
-                  <CTableDataCell style={{ width: '20%' }}>
-                    <CFormCheck
-                      inline
-                      label="Y"
-                      type="radio"
-                      name={`${i}_ya_tidak`}
-                      id={`${i}_ya_tidak`}
-                      value="ya"
-                      defaultChecked={element?.ya_tidak === 'ya'}
-                      onClick={(e) => handleRow(e, 'ya_tidak')}
-                    />
+                <CTableHeaderCell style={{ width: '20%' }} scope="col">
+                  Ya atau Tidak
+                </CTableHeaderCell>
 
-                    <CFormCheck
-                      inline
-                      label="T"
-                      type="radio"
-                      name={`${i}_ya_tidak`}
-                      id={`${i}_ya_tidak`}
-                      value="tidak"
-                      defaultChecked={element?.ya_tidak === 'tidak'}
-                      onClick={(e) => handleRow(e, 'ya_tidak')}
-                    />
-                  </CTableDataCell>
+                <CTableHeaderCell style={{ width: '20%' }} scope="col">
+                  Ada Kesulitan?
+                </CTableHeaderCell>
 
-                  <CTableDataCell style={{ width: '20%' }}>
-                    <CFormCheck
-                      inline
-                      label="Y"
-                      type="radio"
-                      name={`${i}_kesulitan`}
-                      id={`${i}_kesulitan`}
-                      value="ya"
-                      defaultChecked={element?.ada_kesulitan === 'ya'}
-                      onClick={(e) => handleRow(e, 'ada_kesulitan')}
-                    />
+                <CTableHeaderCell style={{ width: '30%' }} scope="col">
+                  Tools/Bahasa Pemrograman yang digunakan
+                  <CTooltip
+                    content="Tool/Bahasa Pemrograman yang digunakan sekaligus level pengguanaan Anda (Basic, Intermediate, Advance) [Cara penulisan: Jira_basic, Kibana_inter, Golang_adv]"
+                    placement="bottom"
+                  >
+                    <CIcon icon={cilInfo} size="sm" style={{ marginLeft: '.25rem' }} />
+                  </CTooltip>
+                </CTableHeaderCell>
+              </CTableRow>
+            </CTableHead>
 
-                    <CFormCheck
-                      inline
-                      label="T"
-                      type="radio"
-                      name={`${i}_kesulitan`}
-                      id={`${i}_kesulitan`}
-                      value="tidak"
-                      defaultChecked={element?.ada_kesulitan === 'tidak'}
-                      onClick={(e) => handleRow(e, 'ada_kesulitan')}
-                    />
-                  </CTableDataCell>
+            <CTableBody>
+              {jawabanDUJT &&
+                jawabanDUJT.map((element, i) => (
+                  <CTableRow key={`duj_list_${i}`}>
+                    <CTableDataCell style={{ width: '30%' }}>
+                      {element.detail_pekerjaan}
+                    </CTableDataCell>
 
-                  <CTableDataCell style={{ width: '30%' }}>
-                    <CFormTextarea
-                      rows={3}
-                      id={`${i}_tools`}
-                      name={`${i}_tools`}
-                      value={element?.tools || ''}
-                      onChange={(e) => handleRow(e, 'tools')}
-                    />
-                  </CTableDataCell>
-                </CTableRow>
-              ))}
+                    <CTableDataCell style={{ width: '20%' }}>
+                      <CFormCheck
+                        inline
+                        label="Y"
+                        type="radio"
+                        name={`${i}_ya_tidak`}
+                        id={`${i}_ya_tidak`}
+                        value="ya"
+                        defaultChecked={element?.ya_tidak === 'ya'}
+                        onClick={(e) => handleRow(e, 'ya_tidak')}
+                      />
 
-            <CTableRow>
-              <CTableDataCell colSpan="4">
-                <CButton color="info" size="lg">
-                  Tambah Pekerjaan Lainnya
-                </CButton>
-              </CTableDataCell>
-            </CTableRow>
-          </CTableBody>
-        </CTable>
-      </CCardBody>
+                      <CFormCheck
+                        inline
+                        label="T"
+                        type="radio"
+                        name={`${i}_ya_tidak`}
+                        id={`${i}_ya_tidak`}
+                        value="tidak"
+                        defaultChecked={element?.ya_tidak === 'tidak'}
+                        onClick={(e) => handleRow(e, 'ya_tidak')}
+                      />
+                    </CTableDataCell>
 
-      <CCardFooter className="d-flex justify-content-end align-items-center">
-        <CRow className="mx-0">
-          <CCol className="d-grid">
-            <CButton
-              color="info"
-              size="lg"
-              onClick={() => navigate('/self-assessment-soal/self-assessment-2')}
-            >
-              Kembali
-            </CButton>
-          </CCol>
+                    <CTableDataCell style={{ width: '20%' }}>
+                      <CFormCheck
+                        inline
+                        label="Y"
+                        type="radio"
+                        name={`${i}_kesulitan`}
+                        id={`${i}_kesulitan`}
+                        value="ya"
+                        defaultChecked={element?.ada_kesulitan === 'ya'}
+                        onClick={(e) => handleRow(e, 'ada_kesulitan')}
+                      />
 
-          <CCol className="d-grid">
-            <CButton
-              color="info"
-              size="lg"
-              onClick={() => navigate('/self-assessment-soal/kebutuhan-training')}
-            >
-              Selanjutnya
-            </CButton>
-          </CCol>
-        </CRow>
-      </CCardFooter>
-    </CCard>
+                      <CFormCheck
+                        inline
+                        label="T"
+                        type="radio"
+                        name={`${i}_kesulitan`}
+                        id={`${i}_kesulitan`}
+                        value="tidak"
+                        defaultChecked={element?.ada_kesulitan === 'tidak'}
+                        onClick={(e) => handleRow(e, 'ada_kesulitan')}
+                      />
+                    </CTableDataCell>
+
+                    <CTableDataCell style={{ width: '30%' }}>
+                      <CFormTextarea
+                        rows={3}
+                        id={`${i}_tools`}
+                        name={`${i}_tools`}
+                        value={element?.tools || ''}
+                        onChange={(e) => handleRow(e, 'tools')}
+                      />
+                    </CTableDataCell>
+                  </CTableRow>
+                ))}
+
+              <CTableRow>
+                <CTableDataCell colSpan="4">
+                  <CButton color="info" size="lg" onClick={() => setModal(!modal)}>
+                    Tambah Pekerjaan Lainnya
+                  </CButton>
+                </CTableDataCell>
+              </CTableRow>
+            </CTableBody>
+          </CTable>
+        </CCardBody>
+
+        <CCardFooter className="d-flex justify-content-end align-items-center">
+          <CRow className="mx-0">
+            <CCol className="d-grid">
+              <CButton
+                color="info"
+                size="lg"
+                onClick={() => navigate('/self-assessment-soal/self-assessment-2')}
+              >
+                Kembali
+              </CButton>
+            </CCol>
+
+            <CCol className="d-grid">
+              <CButton
+                color="info"
+                size="lg"
+                onClick={() => navigate('/self-assessment-soal/kebutuhan-training')}
+              >
+                Selanjutnya
+              </CButton>
+            </CCol>
+          </CRow>
+        </CCardFooter>
+      </CCard>
+    </>
   )
 }
 
