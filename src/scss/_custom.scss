@@ -1,1 +1,94 @@
 // Here you can add other styles
+@font-face {
+  font-family: Poppins;
+  src: url('./../../public/fonts/Poppins-Medium.ttf');
+}
+
+html:not([dir='rtl']) .custom-breadcrum {
+  background-position: right 0 center;
+}
+
+.custom-breadcrum {
+  position: relative;
+  padding-right: 2em;
+
+  .breadcrum-number {
+    background: #e9e9e9;
+    color: #939393;
+  }
+
+  .number-active {
+    background: radial-gradient(100% 100% at 43.44% 0%, #74a3ff 0%, #0085ff 100%);
+    color: #ffff;
+  }
+
+  .breadcrum-text {
+    color: #939393;
+  }
+
+  .text-active {
+    color: #0085ff;
+  }
+}
+
+.custom-breadcrum:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  border-color: #dde3e9;
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  top: 1.5em;
+  left: 100%;
+  margin-top: -1em;
+  transform: rotate(-45deg) translate(-70%, -80%);
+  height: 1.9em;
+  width: 1.9em;
+}
+
+.custom-tab {
+  a {
+    color: #939393;
+  }
+
+  .tab-active {
+    color: #0085ff;
+    border-color: #0085ff;
+    border-style: solid;
+    border-width: 0 0 4px 0;
+  }
+
+  a:hover {
+    color: #939393;
+  }
+
+  .tab-active:hover {
+    color: #0085ff;
+    border-color: #0085ff;
+    border-style: solid;
+    border-width: 0 0 4px 0;
+  }
+}
+
+.custom-btn-next {
+  background: radial-gradient(100% 100% at 43.44% 0%, #74a3ff 0%, #0085ff 100%);
+}
+
+.custom-btn-back {
+  background: #f1f6ff;
+  color: #0085ff;
+  position: relative;
+}
+
+.custom-btn-back::before {
+  content: '';
+  position: absolute;
+  border-color: #0085ff;
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  top: 75%;
+  left: 0.5em;
+  margin-top: -1em;
+  transform: rotate(135deg) translate(-60%, -50%);
+  height: 1em;
+  width: 1em;
+}
