@@ -18,6 +18,7 @@ import skill from './_skill'
 
 const PilihRole = () => {
   const navigate = useNavigate()
+  const formDiri = useSelector((state) => state.formDiri)
   const selectedRole = useSelector((state) => state.selectedRole)
   const activeKey = useSelector((state) => state.activeKey)
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const PilihRole = () => {
         {skill &&
           [...new Set(skill.map((element) => element.category))].map((item_1, i) => (
             <React.Fragment key={`cat_list_${i}`}>
-              <h3>{item_1}</h3>
+              <h5>{item_1}</h5>
 
               <CRow className="mb-3">
                 {skill &&
@@ -41,14 +42,20 @@ const PilihRole = () => {
                   ].map((item_2, idx) => (
                     <CCol key={`role_list_${idx}`} md={3} className="mb-2">
                       <CButton
-                        color="info"
+                        color={selectedRole[roleType]?.role === item_2 ? 'info' : 'muted'}
                         size="lg"
                         className="d-grid p-0"
                         style={{ width: '100%', height: '100%' }}
                         onClick={() => handleRole(roleType, item_1, item_2)}
                       >
                         <CCard>
-                          <CCardBody>{item_2}</CCardBody>
+                          <CCardBody
+                            className={`${
+                              selectedRole[roleType]?.role === item_2 ? 'text-info' : 'text-dark'
+                            }`}
+                          >
+                            {item_2}
+                          </CCardBody>
                         </CCard>
                       </CButton>
                     </CCol>
@@ -113,52 +120,77 @@ const PilihRole = () => {
     }
   }
 
+  React.useEffect(() => {
+    if (Object.values(formDiri).includes('')) {
+      navigate('/self-assessment/data-diri')
+    }
+  }, [])
+
   return (
     <>
-      <CNav varant="tabs" role="tablist">
+      <CNav varant="tabs" role="tablist" className="custom-tab border-bottom">
         <CNavItem>
-          <CNavLink active={activeKey === 1}>1. Role Utama</CNavLink>
+          <CNavLink className={`${activeKey === 1 && 'tab-active'}`} active={activeKey === 1}>
+            1. Role Utama
+          </CNavLink>
         </CNavItem>
 
         <CNavItem>
-          <CNavLink active={activeKey === 2}>2. Role Tambahan</CNavLink>
+          <CNavLink className={`${activeKey === 2 && 'tab-active'}`} active={activeKey === 2}>
+            2. Role Tambahan
+          </CNavLink>
         </CNavItem>
 
         <CNavItem>
-          <CNavLink active={activeKey === 3}>3. Role Minat</CNavLink>
+          <CNavLink className={`${activeKey === 3 && 'tab-active'}`} active={activeKey === 3}>
+            3. Role Minat
+          </CNavLink>
         </CNavItem>
       </CNav>
 
       <CTabContent>
-        <CTabPane role="tabpanel" aria-labelledby="role-utama" visible={activeKey === 1}>
-          <h3>Role Utama</h3>
+        <CTabPane
+          className="my-4"
+          role="tabpanel"
+          aria-labelledby="role-utama"
+          visible={activeKey === 1}
+        >
           {tabItem('utama')}
         </CTabPane>
 
-        <CTabPane role="tabpanel" aria-labelledby="role-tambahan" visible={activeKey === 2}>
-          <h3>Role Tambahan</h3>
+        <CTabPane
+          className="my-4"
+          role="tabpanel"
+          aria-labelledby="role-tambahan"
+          visible={activeKey === 2}
+        >
           {tabItem('tambahan')}
         </CTabPane>
 
-        <CTabPane role="tabpanel" aria-labelledby="role-minat" visible={activeKey === 3}>
-          <h3>Role Minat</h3>
+        <CTabPane
+          className="my-4"
+          role="tabpanel"
+          aria-labelledby="role-minat"
+          visible={activeKey === 3}
+        >
           {tabItem('minat')}
         </CTabPane>
       </CTabContent>
 
       <CRow className="mb-3">
         <CCol md={4} className="d-grid mb-2">
-          <CButton color="secondary" size="lg" onClick={handleBack}>
+          <CButton color="light" size="lg" onClick={handleBack} className="custom-btn-back">
             Kembali
           </CButton>
         </CCol>
 
         <CCol md={8} className="d-grid mb-2">
           <CButton
-            color="primary"
+            color="info"
             size="lg"
             onClick={handleNext}
             disabled={activeKey === 1 && !selectedRole.utama}
+            className="custom-btn-next text-white"
           >
             Selanjutnya
           </CButton>

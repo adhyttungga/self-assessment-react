@@ -199,7 +199,10 @@ const SelfAssessment2 = () => {
         </CTable>
       </CCardBody>
 
-      <CCardFooter className="d-flex justify-content-end align-items-center">
+      <CCardFooter
+        className="d-flex justify-content-end align-items-center"
+        style={{ backgroundColor: 'inherit' }}
+      >
         <CRow className="mx-0">
           <CCol className="d-grid">
             <CButton

@@ -45,7 +45,10 @@ const DataDiri = () => {
     <>
       <CForm>
         <div className="mb-3">
-          <CFormLabel htmlFor="namaPekerja" className="col-sm-2 col-form-label text-nowrap">
+          <CFormLabel
+            htmlFor="namaPekerja"
+            className="col-sm-2 col-form-label text-nowrap fw-semibold"
+          >
             Nama Pekerja
           </CFormLabel>
 
@@ -59,8 +62,8 @@ const DataDiri = () => {
         </div>
 
         <CRow className="mb-3">
-          <CCol md={6}>
-            <CFormLabel htmlFor="noPN" className="col-sm-2 col-form-label text-nowrap">
+          <CCol md={6} className="mb-3">
+            <CFormLabel htmlFor="noPN" className="col-sm-2 col-form-label text-nowrap fw-semibold">
               No. PN
             </CFormLabel>
 
@@ -73,8 +76,11 @@ const DataDiri = () => {
             />
           </CCol>
 
-          <CCol md={6}>
-            <CFormLabel htmlFor="status" className="col-sm-2 col-form-label text-nowrap">
+          <CCol md={6} className="mb-3">
+            <CFormLabel
+              htmlFor="status"
+              className="col-sm-2 col-form-label text-nowrap fw-semibold"
+            >
               Status
             </CFormLabel>
 
@@ -87,8 +93,11 @@ const DataDiri = () => {
             />
           </CCol>
 
-          <CCol md={6}>
-            <CFormLabel htmlFor="department" className="col-sm-2 col-form-label text-nowrap">
+          <CCol md={6} className="mb-3">
+            <CFormLabel
+              htmlFor="department"
+              className="col-sm-2 col-form-label text-nowrap fw-semibold"
+            >
               Departemen
             </CFormLabel>
 
@@ -107,8 +116,11 @@ const DataDiri = () => {
             </CFormSelect>
           </CCol>
 
-          <CCol md={6}>
-            <CFormLabel htmlFor="fungsi" className="col-sm-2 col-form-label text-nowrap">
+          <CCol md={6} className="mb-3">
+            <CFormLabel
+              htmlFor="fungsi"
+              className="col-sm-2 col-form-label text-nowrap fw-semibold"
+            >
               Fungsi
             </CFormLabel>
 
@@ -122,8 +134,8 @@ const DataDiri = () => {
             </CFormSelect>
           </CCol>
 
-          <CCol md={6}>
-            <CFormLabel htmlFor="email" className="col-sm-2 col-form-label text-nowrap">
+          <CCol md={6} className="mb-3">
+            <CFormLabel htmlFor="email" className="col-sm-2 col-form-label text-nowrap fw-semibold">
               Email
             </CFormLabel>
 
@@ -136,8 +148,11 @@ const DataDiri = () => {
             />
           </CCol>
 
-          <CCol md={6}>
-            <CFormLabel htmlFor="corporateTitle" className="col-sm-2 col-form-label text-nowrap">
+          <CCol md={6} className="mb-3">
+            <CFormLabel
+              htmlFor="corporateTitle"
+              className="col-sm-2 col-form-label text-nowrap fw-semibold"
+            >
               Corporate Title
             </CFormLabel>
 
@@ -158,12 +173,13 @@ const DataDiri = () => {
           </CCol>
         </CRow>
 
-        <div className="mb-3 d-grid">
+        <div className="mb-3 d-grid ">
           <CButton
-            color="primary"
+            color="info"
             size="lg"
             onClick={handleSubmit}
             disabled={isiFormDiri.includes('')}
+            className="custom-btn-next text-white"
           >
             Selanjutnya
           </CButton>

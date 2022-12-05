@@ -66,39 +66,78 @@ const SelfAssessment1 = () => {
           <CTable>
             <CTableHead>
               <CTableRow>
-                <CTableHeaderCell style={{ width: '20%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '20%', borderTopLeftRadius: 'var(--cui-border-radius)' }}
+                  scope="col"
+                >
                   Skill
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '30%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '30%' }}
+                  scope="col"
+                >
                   Job Desk
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '5%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '5%' }}
+                  scope="col"
+                >
                   1
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '5%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '5%' }}
+                  scope="col"
+                >
                   2
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '5%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '5%' }}
+                  scope="col"
+                >
                   3
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '5%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '5%' }}
+                  scope="col"
+                >
                   4
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '5%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '5%' }}
+                  scope="col"
+                >
                   5
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '5%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '5%' }}
+                  scope="col"
+                >
                   6
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '20%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{
+                    width: '20%',
+                    borderTopRightRadius: 'var(--cui-border-radius)',
+                  }}
+                  scope="col"
+                >
                   Penjelasan
                   <CTooltip
                     content="Mohon berikan penjelasan dengan menuliskan pekerjaan-pekerjaan yang dilakukan terkait skill ini"
@@ -114,7 +153,9 @@ const SelfAssessment1 = () => {
               {jawabanSA1 &&
                 [...new Set(jawabanSA1.map((element) => element.skill))].map((item_1, i) => (
                   <CTableRow key={`soal_sa1_${i}`}>
-                    <CTableDataCell style={{ width: '20%' }}>{item_1}</CTableDataCell>
+                    <CTableDataCell style={{ width: '20%' }}>
+                      <b>{item_1}</b>
+                    </CTableDataCell>
 
                     <CTableDataCell className="px-0" style={{ width: '80%' }} colSpan="8">
                       <CTable className="m-0">
@@ -214,11 +255,15 @@ const SelfAssessment1 = () => {
           </CTable>
         </CCardBody>
 
-        <CCardFooter className="d-flex justify-content-end align-items-center">
+        <CCardFooter
+          className="d-flex justify-content-end align-items-center"
+          style={{ backgroundColor: 'inherit' }}
+        >
           <CButton
             color="info"
             size="lg"
             onClick={() => navigate('/self-assessment-soal/self-assessment-2')}
+            className="custom-btn-next text-white px-5"
           >
             Selanjutnya
           </CButton>
