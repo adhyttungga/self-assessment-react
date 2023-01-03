@@ -27,8 +27,8 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
-
-import { cilInfo } from '@coreui/icons'
+import { cilXCircle } from '@coreui/icons'
+import { iconInfo } from 'src/assets/icons'
 
 import departemen from './../self-assessment/_duj'
 
@@ -110,41 +110,70 @@ const DUJTools = () => {
                   pekerjaan: e.target.value,
                 })
               }
+              onKeyPress={(e) => {
+                if (e.key == 'Enter') {
+                  e.preventDefault()
+                }
+              }}
             />
           </CForm>
         </CModalBody>
 
         <CModalFooter>
-          <CButton color="info" onClick={handleAdd}>
+          <CButton className="custom-btn-next text-white" color="info" onClick={handleAdd}>
             Submit
           </CButton>
         </CModalFooter>
       </CModal>
 
       <CCard className="mb-4 border-0">
-        <CCardBody className="p-0">
+        <CCardBody className="p-0 overflow-auto">
           <CTable>
             <CTableHead className="align-middle">
               <CTableRow>
-                <CTableHeaderCell style={{ width: '30%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{
+                    width: '30%',
+                    borderTopLeftRadius: 'var(--cui-border-radius)',
+                    whiteSpace: 'nowrap',
+                  }}
+                  scope="col"
+                >
                   Pekerjaan
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '20%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '20%', whiteSpace: 'nowrap' }}
+                  scope="col"
+                >
                   Ya atau Tidak
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '20%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{ width: '20%', whiteSpace: 'nowrap' }}
+                  scope="col"
+                >
                   Ada Kesulitan?
                 </CTableHeaderCell>
 
-                <CTableHeaderCell style={{ width: '30%' }} scope="col">
+                <CTableHeaderCell
+                  className="custom-btn-next text-white"
+                  style={{
+                    width: '30%',
+                    borderTopRightRadius: 'var(--cui-border-radius)',
+                    whiteSpace: 'nowrap',
+                  }}
+                  scope="col"
+                >
                   Tools/Bahasa Pemrograman yang digunakan
                   <CTooltip
                     content="Tool/Bahasa Pemrograman yang digunakan sekaligus level pengguanaan Anda (Basic, Intermediate, Advance) [Cara penulisan: Jira_basic, Kibana_inter, Golang_adv]"
                     placement="bottom"
                   >
-                    <CIcon icon={cilInfo} size="sm" style={{ marginLeft: '.25rem' }} />
+                    <CIcon icon={iconInfo} size="sm" style={{ marginLeft: '.25rem' }} />
                   </CTooltip>
                 </CTableHeaderCell>
               </CTableRow>
@@ -159,51 +188,67 @@ const DUJTools = () => {
                     </CTableDataCell>
 
                     <CTableDataCell style={{ width: '20%' }}>
-                      <CFormCheck
-                        inline
-                        label="Y"
-                        type="radio"
-                        name={`${i}_ya_tidak`}
-                        id={`${i}_ya_tidak`}
-                        value="ya"
-                        defaultChecked={element?.ya_tidak === 'ya'}
-                        onClick={(e) => handleRow(e, 'ya_tidak')}
-                      />
+                      <CRow className="mx-0 w-100 justify-content-start">
+                        <CCol md={4} className="d-inline mb-2">
+                          <span className="mx-2">Y</span>
+                          <CFormCheck
+                            style={{ margin: 0, width: '1.5em', height: '1.5em' }}
+                            inline
+                            type="radio"
+                            name={`${i}_ya_tidak`}
+                            id={`${i}_ya_tidak`}
+                            value="ya"
+                            defaultChecked={element?.ya_tidak === 'ya'}
+                            onClick={(e) => handleRow(e, 'ya_tidak')}
+                          />
+                        </CCol>
 
-                      <CFormCheck
-                        inline
-                        label="T"
-                        type="radio"
-                        name={`${i}_ya_tidak`}
-                        id={`${i}_ya_tidak`}
-                        value="tidak"
-                        defaultChecked={element?.ya_tidak === 'tidak'}
-                        onClick={(e) => handleRow(e, 'ya_tidak')}
-                      />
+                        <CCol md={4} className="d-inline mb-2">
+                          <span className="mx-2">T</span>
+                          <CFormCheck
+                            style={{ margin: 0, width: '1.5em', height: '1.5em' }}
+                            inline
+                            type="radio"
+                            name={`${i}_ya_tidak`}
+                            id={`${i}_ya_tidak`}
+                            value="tidak"
+                            defaultChecked={element?.ya_tidak === 'tidak'}
+                            onClick={(e) => handleRow(e, 'ya_tidak')}
+                          />
+                        </CCol>
+                      </CRow>
                     </CTableDataCell>
 
                     <CTableDataCell style={{ width: '20%' }}>
-                      <CFormCheck
-                        inline
-                        label="Y"
-                        type="radio"
-                        name={`${i}_kesulitan`}
-                        id={`${i}_kesulitan`}
-                        value="ya"
-                        defaultChecked={element?.ada_kesulitan === 'ya'}
-                        onClick={(e) => handleRow(e, 'ada_kesulitan')}
-                      />
+                      <CRow className="mx-0 w-100 justify-content-start">
+                        <CCol md={4} className="d-inline mb-2">
+                          <span className="mx-2">Y</span>
+                          <CFormCheck
+                            style={{ margin: 0, width: '1.5em', height: '1.5em' }}
+                            inline
+                            type="radio"
+                            name={`${i}_kesulitan`}
+                            id={`${i}_kesulitan`}
+                            value="ya"
+                            defaultChecked={element?.ada_kesulitan === 'ya'}
+                            onClick={(e) => handleRow(e, 'ada_kesulitan')}
+                          />
+                        </CCol>
 
-                      <CFormCheck
-                        inline
-                        label="T"
-                        type="radio"
-                        name={`${i}_kesulitan`}
-                        id={`${i}_kesulitan`}
-                        value="tidak"
-                        defaultChecked={element?.ada_kesulitan === 'tidak'}
-                        onClick={(e) => handleRow(e, 'ada_kesulitan')}
-                      />
+                        <CCol md={4} className="d-inline mb-2">
+                          <span className="mx-2">T</span>
+                          <CFormCheck
+                            style={{ margin: 0, width: '1.5em', height: '1.5em' }}
+                            inline
+                            type="radio"
+                            name={`${i}_kesulitan`}
+                            id={`${i}_kesulitan`}
+                            value="tidak"
+                            defaultChecked={element?.ada_kesulitan === 'tidak'}
+                            onClick={(e) => handleRow(e, 'ada_kesulitan')}
+                          />
+                        </CCol>
+                      </CRow>
                     </CTableDataCell>
 
                     <CTableDataCell style={{ width: '30%' }}>
@@ -220,8 +265,23 @@ const DUJTools = () => {
 
               <CTableRow>
                 <CTableDataCell colSpan="4">
-                  <CButton color="info" size="lg" onClick={() => setModal(!modal)}>
-                    Tambah Pekerjaan Lainnya
+                  <CButton
+                    color="info"
+                    size="lg"
+                    onClick={() => setModal(!modal)}
+                    className="p-0 m-2"
+                  >
+                    <CCard>
+                      <CCardBody className="text-info d-flex align-items-center">
+                        <CIcon
+                          className="me-2"
+                          icon={cilXCircle}
+                          size="xxl"
+                          style={{ transform: 'rotate(45deg)' }}
+                        />
+                        Tambah Pekerjaan Lainnya
+                      </CCardBody>
+                    </CCard>
                   </CButton>
                 </CTableDataCell>
               </CTableRow>
@@ -229,23 +289,28 @@ const DUJTools = () => {
           </CTable>
         </CCardBody>
 
-        <CCardFooter className="d-flex justify-content-end align-items-center">
-          <CRow className="mx-0">
-            <CCol className="d-grid">
+        <CCardFooter
+          className="d-flex justify-content-end align-items-center"
+          style={{ backgroundColor: 'inherit' }}
+        >
+          <CRow className="mx-0 w-100 justify-content-end">
+            <CCol md={3} className="d-grid mb-2">
               <CButton
-                color="info"
+                color="light"
                 size="lg"
                 onClick={() => navigate('/self-assessment-soal/self-assessment-2')}
+                className="custom-btn-back"
               >
                 Kembali
               </CButton>
             </CCol>
 
-            <CCol className="d-grid">
+            <CCol md={3} className="d-grid mb-2">
               <CButton
                 color="info"
                 size="lg"
                 onClick={() => navigate('/self-assessment-soal/kebutuhan-training')}
+                className="custom-btn-next text-white"
               >
                 Selanjutnya
               </CButton>
