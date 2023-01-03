@@ -91,7 +91,7 @@
 // $success-25:    #cbedd6 !default;
 
 // $info-dark:  #2982cc !default;
-// $info-base:  #39f !default;
+$info-base: #39f !default;
 // $info-50:    #80c6ff !default;
 // $info-25:    #c0e6ff !default;
 
@@ -120,7 +120,7 @@
 // $primary:       $primary-base !default;
 // $secondary:     $secondary-base !default;
 // $success:       $success-base !default;
-// $info:          $info-base !default;
+$info: $info-base !default;
 // $warning:       $warning-base !default;
 // $danger:        $danger-base !default;
 // $light:         $light-base !default;
@@ -837,8 +837,8 @@ $font-family-sans-serif: Poppins, system-ui, -apple-system, 'Segoe UI', Roboto, 
 // $form-check-input-focus-box-shadow:       $input-btn-focus-box-shadow !default;
 
 // $form-check-input-checked-color:          $component-active-color !default;
-// $form-check-input-checked-bg-color:       $component-active-bg !default;
-// $form-check-input-checked-border-color:   $form-check-input-checked-bg-color !default;
+$form-check-input-checked-bg-color: $info !default;
+$form-check-input-checked-border-color: $info !default;
 // $form-check-input-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/></svg>") !default;
 // $form-check-radio-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>") !default;
 

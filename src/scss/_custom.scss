@@ -92,3 +92,16 @@ html:not([dir='rtl']) .custom-breadcrum {
   height: 1em;
   width: 1em;
 }
+
+.sidebar-root {
+  overflow-x: auto;
+  border-radius: 0px;
+  background: linear-gradient(
+      179.22deg,
+      rgba(22, 135, 223, 0.7) -3.7%,
+      rgba(0, 144, 255, 0.7) -3.7%,
+      rgba(18, 132, 220, 0.7) 77.94%
+    ),
+    url(../assets/images/sidebar.svg);
+  background-size: cover;
+}
