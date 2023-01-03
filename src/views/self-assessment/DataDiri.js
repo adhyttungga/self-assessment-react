@@ -46,7 +46,7 @@ const DataDiri = () => {
       <CForm>
         <div className="mb-3">
           <CFormLabel
-            htmlFor="namaPekerja"
+            htmlFor="nama_pekerja"
             className="col-sm-2 col-form-label text-nowrap fw-semibold"
           >
             Nama Pekerja
@@ -54,24 +54,24 @@ const DataDiri = () => {
 
           <CFormInput
             type="text"
-            id="namaPekerja"
+            id="nama_pekerja"
             placeholder="Masukan nama anda..."
-            value={formDiri.namaPekerja}
+            value={formDiri.nama_pekerja}
             onChange={handleSelect}
           />
         </div>
 
         <CRow className="mb-3">
           <CCol md={6} className="mb-3">
-            <CFormLabel htmlFor="noPN" className="col-sm-2 col-form-label text-nowrap fw-semibold">
+            <CFormLabel htmlFor="no_pn" className="col-sm-2 col-form-label text-nowrap fw-semibold">
               No. PN
             </CFormLabel>
 
             <CFormInput
               type="text"
-              id="noPN"
+              id="no_pn"
               placeholder="Masukan no. PN anda..."
-              value={formDiri.noPN}
+              value={formDiri.no_pn}
               onChange={handleSelect}
             />
           </CCol>
@@ -150,17 +150,17 @@ const DataDiri = () => {
 
           <CCol md={6} className="mb-3">
             <CFormLabel
-              htmlFor="corporateTitle"
+              htmlFor="corporate_title"
               className="col-sm-2 col-form-label text-nowrap fw-semibold"
             >
               Corporate Title
             </CFormLabel>
 
             <CFormSelect
-              id="corporateTitle"
-              name="corporateTitle"
+              id="corporate_title"
+              name="corporate_title"
               onChange={handleSelect}
-              value={formDiri.corporateTitle}
+              value={formDiri.corporate_title}
             >
               <option value="">Pilih corporate title anda...</option>
               <option value="VP">VP</option>

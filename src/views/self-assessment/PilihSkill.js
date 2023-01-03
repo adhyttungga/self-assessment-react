@@ -29,7 +29,7 @@ const PilihSkill = () => {
   }
 
   const handleSubmit = () => {
-    dispatch({ type: 'set', jawabanSA1: [] })
+    dispatch({ type: 'set', jawabanSA1: [], jawabanSA2: [] })
     navigate('/self-assessment-soal/self-assessment-1')
   }
 

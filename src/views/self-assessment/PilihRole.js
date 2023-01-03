@@ -113,7 +113,7 @@ const PilihRole = () => {
           selectedSkill.push(...skillList)
         })
 
-      dispatch({ type: 'set', selectedSkillList: selectedSkill })
+      dispatch({ type: 'set', selectedSkillList: selectedSkill, selectedSkill: [], jawabanKT: [] })
       navigate('/self-assessment/pilih-skill')
     } else {
       dispatch({ type: 'set', activeKey: activeKey + 1 })
