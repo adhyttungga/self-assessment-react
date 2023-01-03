@@ -1,10 +1,11 @@
 import React from 'react'
-import { PertanyaanContent, PertanyaanHeader } from '../components/index'
+import { PertanyaanContent, PertanyaanHeader, TheSidebar } from '../components/index'
 
 const PertanyaanLayout = () => {
   return (
     <div>
-      <div className="wrapper d-flex flex-column min-vh-100 bg-white">
+      <TheSidebar />
+      <div className="wrapper d-flex flex-column min-vh-100 bg-white sidebar-end">
         <PertanyaanHeader />
         <div className="body flex-grow-1 px-3">
           <PertanyaanContent />
