@@ -1,15 +1,15 @@
 import { createStore } from 'redux'
 
 const initialState = {
-  sidebarShow: true,
+  sidebarShow: 'responsive',
   formDiri: {
-    namaPekerja: '',
-    noPN: '',
+    nama_pekerja: '',
+    no_pn: '',
     status: '',
     department: '',
     fungsi: '',
     email: '',
-    corporateTitle: '',
+    corporate_title: '',
   },
   selectedRole: {
     utama: undefined,
@@ -23,6 +23,7 @@ const initialState = {
   jawabanSA2: [],
   jawabanDUJT: [],
   jawabanKT: [],
+  keywordInfoSkill: '',
 }
 
 const changeState = (state = initialState, { type, ...rest }) => {
