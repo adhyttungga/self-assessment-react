@@ -613,7 +613,7 @@ const _kt = [
   },
   {
     role: 'Scrum Master',
-    nama_training: 'Indonesian Scrum Master?',
+    nama_training: 'Indonesian Scrum Master',
   },
   {
     role: 'Scrum Master',
@@ -815,7 +815,7 @@ const _kt = [
   },
   {
     role: 'Problem Analyst',
-    nama_training: 'Information? ?Systems Specialization',
+    nama_training: 'Information Systems Specialization',
   },
   {
     role: 'Problem Analyst',
@@ -1158,59 +1158,59 @@ const _kt = [
     nama_training: 'Creating Measures and Metrics in ITSM',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Technical Writing Course',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Technical Author Course',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Professional Technical Writing',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Enterprise Content Management (ECM)',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Fast Typer',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Microsoft Office Specialist (MOS) Certifications',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Professional Technical Writing Training',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Jira Confluence',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Jira Software',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Software Documentation',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'BRI APP Documentation',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'IT Asset Management',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Application Portfolio Management',
   },
   {
-    role: 'Technical Writter',
+    role: 'Technical Writer',
     nama_training: 'Scheduling, Planning and Communication Strategies',
   },
   {
