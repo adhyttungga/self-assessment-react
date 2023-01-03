@@ -1,29 +1,52 @@
 import React from 'react'
-import { CCol, CContainer, CHeader, CHeaderBrand, CRow, CButton } from '@coreui/react'
+import {
+  CCol,
+  CContainer,
+  CHeader,
+  CHeaderBrand,
+  CRow,
+  CButton,
+  CForm,
+  CInputGroup,
+  CInputGroupText,
+  CFormInput,
+} from '@coreui/react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
-import { cilInfo, cilChevronLeft } from '@coreui/icons'
+import { cilChevronCircleLeftAlt } from '@coreui/icons'
+import { iconSearch, iconInfo } from 'src/assets/icons'
 
 import BRISVI from 'src/assets/images/BRIxSVI.png'
 
 const PertanyaanHeader = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const currentLocation = useLocation().pathname
   const routeName = currentLocation.split('/')?.findLast((element) => element)
+  const keywordInfoSkill = useSelector((state) => state.keywordInfoSkill)
+
+  const updateKeyword = (e) => {
+    dispatch({ type: 'set', keywordInfoSkill: String(e.target.value) })
+  }
   return (
     <>
       <CHeader className="mb-4 border-0 flex-column">
         <CContainer fluid className="mb-5">
-          <div>
+          <div className="d-flex flex-nowrap align-items-center">
             <CButton
-              color="light"
-              onClick={() => navigate(-1)}
-              className="d-inline-block rounded-circle align-middle"
+              color="none"
+              onClick={
+                routeName !== 'informasi-skill'
+                  ? () => navigate('/self-assessment/pilih-skill')
+                  : () => navigate(-1)
+              }
+              className="d-flex align-items-center p-0"
             >
-              <CIcon icon={cilChevronLeft} />
+              <CIcon icon={cilChevronCircleLeftAlt} size="xxl" />
             </CButton>
 
-            <h3 className="d-inline-block align-middle mx-3 my-0">Pengisian Assessment</h3>
+            <h3 className="d-inline-block align-middle mx-1 my-0">Pengisian Assessment</h3>
           </div>
 
           <CHeaderBrand>
@@ -73,30 +96,35 @@ const PertanyaanHeader = () => {
 
         {routeName === 'self-assessment-2' && (
           <CContainer lg fluid className="flex-column justify-content-start align-items-start ">
-            <h4 className="m-0">
+            <h4 className="">
               PETUNJUK: Pilih jawaban yang paling menggambarkan kemampuan dan pengalaman Anda saat
               ini
             </h4>
 
-            <p className="m-0">Deskripsi Skor Penilaian</p>
+            <p className="m-0">
+              <b>Deskripsi Skor Penilaian</b>
+            </p>
 
             <p className="m-0">
+              <b>Skor 1:</b>
               {
-                'Skor 1: Saya memiliki pengalaman profesional yang signifikan (>= 85% dari semua kompetensi yang dijelaskan)'
+                ' Saya memiliki pengalaman profesional yang signifikan (>= 85% dari semua kompetensi yang dijelaskan)'
               }
             </p>
 
             <p className="m-0">
-              Skor 2: Saya secara teratur melakukan 50% - 85% dari kegiatan yang dijelaskan dengan
-              hasil yang sukses dan konsisten
+              <b>Skor 2:</b> Saya secara teratur melakukan 50% - 85% dari kegiatan yang dijelaskan
+              dengan hasil yang sukses dan konsisten
             </p>
 
             <p className="m-0">
-              Skor 3: Saya memiliki pengetahuan yang relevan, tetapi belum berkesempatan untuk
-              mengembangkan kompetensi tersebut
+              <b>Skor 3:</b> Saya memiliki pengetahuan yang relevan, tetapi belum berkesempatan
+              untuk mengembangkan kompetensi tersebut
             </p>
 
-            <p className="m-0">Skor 4: Saya tidak memiliki pengalaman terkait penjelasan ini</p>
+            <p className="m-0">
+              <b>Skor 4:</b> Saya tidak memiliki pengalaman terkait penjelasan ini
+            </p>
           </CContainer>
         )}
 
@@ -122,105 +150,141 @@ const PertanyaanHeader = () => {
         <CContainer lg fluid className="border-bottom pb-3" />
       </CHeader>
 
-      <CContainer
-        lg
-        fluid
-        className="d-flex flex-wrap justify-content-between align-items-center mb-4"
-      >
-        <CRow className="rounded-pill border border-light">
-          <CCol xs={3} className="custom-breadcrum">
-            <div className="text-nowrap my-2 align-middle">
-              <span
-                style={{ width: '1.5rem', height: '1.5rem' }}
-                className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
-                  routeName === 'self-assessment-1' && 'number-active'
-                }`}
-              >
-                1
-              </span>
-              <span
-                className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
-                  routeName === 'self-assessment-1' && 'text-active'
-                }`}
-              >
-                Self Assessment 1
-              </span>
-            </div>
-          </CCol>
+      {routeName !== 'informasi-skill' && (
+        <CContainer
+          lg
+          fluid
+          className="d-flex flex-wrap justify-content-between align-items-center mb-4"
+        >
+          <CRow className="rounded-pill border border-light">
+            <CCol xs={3} className="custom-breadcrum">
+              <div className="text-nowrap my-2 align-middle">
+                <span
+                  style={{ width: '1.5rem', height: '1.5rem' }}
+                  className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
+                    routeName === 'self-assessment-1' && 'number-active'
+                  }`}
+                >
+                  1
+                </span>
+                <span
+                  className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
+                    routeName === 'self-assessment-1' && 'text-active'
+                  }`}
+                >
+                  Self Assessment 1
+                </span>
+              </div>
+            </CCol>
 
-          <CCol xs={3} className="custom-breadcrum">
-            <div className="text-nowrap my-2 align-middle">
-              <span
-                style={{ width: '1.5rem', height: '1.5rem' }}
-                className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
-                  routeName === 'self-assessment-2' && 'number-active'
-                }`}
-              >
-                2
-              </span>
-              <span
-                className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
-                  routeName === 'self-assessment-2' && 'text-active'
-                }`}
-              >
-                Self Assessment 2
-              </span>
-            </div>
-          </CCol>
+            <CCol xs={3} className="custom-breadcrum">
+              <div className="text-nowrap my-2 align-middle">
+                <span
+                  style={{ width: '1.5rem', height: '1.5rem' }}
+                  className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
+                    routeName === 'self-assessment-2' && 'number-active'
+                  }`}
+                >
+                  2
+                </span>
+                <span
+                  className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
+                    routeName === 'self-assessment-2' && 'text-active'
+                  }`}
+                >
+                  Self Assessment 2
+                </span>
+              </div>
+            </CCol>
 
-          <CCol xs={3} className="custom-breadcrum">
-            <div className="text-nowrap my-2 align-middle">
-              <span
-                style={{ width: '1.5rem', height: '1.5rem' }}
-                className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
-                  routeName === 'duj-tools' && 'number-active'
-                }`}
-              >
-                3
-              </span>
-              <span
-                className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
-                  routeName === 'duj-tools' && 'text-active'
-                }`}
-              >
-                DUJ & Tools
-              </span>
-            </div>
-          </CCol>
+            <CCol xs={3} className="custom-breadcrum">
+              <div className="text-nowrap my-2 align-middle">
+                <span
+                  style={{ width: '1.5rem', height: '1.5rem' }}
+                  className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
+                    routeName === 'duj-tools' && 'number-active'
+                  }`}
+                >
+                  3
+                </span>
+                <span
+                  className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
+                    routeName === 'duj-tools' && 'text-active'
+                  }`}
+                >
+                  DUJ & Tools
+                </span>
+              </div>
+            </CCol>
 
-          <CCol xs={3} className="custom-breadcrum">
-            <div className="text-nowrap my-2 align-middle">
-              <span
-                style={{ width: '1.5rem', height: '1.5rem' }}
-                className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
-                  routeName === 'kebutuhan-training' && 'number-active'
-                }`}
-              >
-                4
-              </span>
-              <span
-                className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
-                  routeName === 'kebutuhan-training' && 'text-active'
-                }`}
-              >
-                Kebutuhan Training
-              </span>
-            </div>
-          </CCol>
-        </CRow>
+            <CCol xs={3} className="custom-breadcrum">
+              <div className="text-nowrap my-2 align-middle">
+                <span
+                  style={{ width: '1.5rem', height: '1.5rem' }}
+                  className={`breadcrum-number d-inline-block rounded-circle text-center align-text-bottom ${
+                    routeName === 'kebutuhan-training' && 'number-active'
+                  }`}
+                >
+                  4
+                </span>
+                <span
+                  className={`breadcrum-text align-baseline mx-2 d-none d-md-inline ${
+                    routeName === 'kebutuhan-training' && 'text-active'
+                  }`}
+                >
+                  Kebutuhan Training
+                </span>
+              </div>
+            </CCol>
+          </CRow>
 
-        <div className="my-2">
-          <CButton
-            color="white"
-            size="sm"
-            onClick={() => navigate('/self-assessment-soal/informasi-skill')}
-            className="text-info"
-          >
-            <CIcon icon={cilInfo} size="sm" style={{ marginRight: '.25rem' }} />
-            Informasi Skill
-          </CButton>
-        </div>
-      </CContainer>
+          <div className="my-2">
+            <CButton
+              color="white"
+              size="sm"
+              onClick={() => navigate('/self-assessment-soal/informasi-skill')}
+              className="text-info"
+            >
+              <CIcon icon={iconInfo} size="sm" style={{ marginRight: '.25rem' }} />
+              Informasi Skill
+            </CButton>
+          </div>
+        </CContainer>
+      )}
+
+      {routeName === 'informasi-skill' && (
+        <CContainer
+          lg
+          fluid
+          className="d-flex flex-wrap justify-content-between align-items-center mb-4"
+        >
+          <div>
+            <h3>
+              <CIcon icon={iconInfo} size="xl" style={{ marginRight: '.25rem' }} />
+              Informasi Skill
+            </h3>
+          </div>
+
+          <div className="my-2">
+            <CForm>
+              <CInputGroup className="flex-nowrap">
+                <CInputGroupText id="addon-wrapping" className="border-end-0 bg-transparent">
+                  <CIcon icon={iconSearch} size="xl" />
+                </CInputGroupText>
+
+                <CFormInput
+                  className="border-start-0"
+                  placeholder="Cari skill..."
+                  aria-label="Cari Skill"
+                  aria-describedby="addon-wrapping"
+                  value={keywordInfoSkill}
+                  onChange={updateKeyword}
+                />
+              </CInputGroup>
+            </CForm>
+          </div>
+        </CContainer>
+      )}
     </>
   )
 }
