@@ -14,7 +14,11 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import skill from './_skill'
+import { _skill, _category_icon, _role_icon } from './_skill'
+
+const skill = _skill
+const category_icon = _category_icon
+const role_icon = _role_icon
 
 const PilihRole = () => {
   const navigate = useNavigate()
@@ -29,7 +33,7 @@ const PilihRole = () => {
         {skill &&
           [...new Set(skill.map((element) => element.category))].map((item_1, i) => (
             <React.Fragment key={`cat_list_${i}`}>
-              <h5>{item_1}</h5>
+              <h5>{category_icon[item_1]}</h5>
 
               <CRow className="mb-3">
                 {skill &&
@@ -54,7 +58,9 @@ const PilihRole = () => {
                               selectedRole[roleType]?.role === item_2 ? 'text-info' : 'text-dark'
                             }`}
                           >
-                            {item_2}
+                            {role_icon[item_2] && role_icon[item_2]}
+
+                            <p className="my-2 text-start">{item_2}</p>
                           </CCardBody>
                         </CCard>
                       </CButton>

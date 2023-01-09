@@ -1,3 +1,29 @@
+import React from 'react'
+import ImgRole1 from '../../assets/images/role-icon/img_role_ (1).svg'
+import ImgRole2 from '../../assets/images/role-icon/img_role_ (2).svg'
+import ImgRole3 from '../../assets/images/role-icon/img_role_ (3).svg'
+import ImgRole4 from '../../assets/images/role-icon/img_role_ (4).svg'
+import ImgRole5 from '../../assets/images/role-icon/img_role_ (5).svg'
+import ImgRole6 from '../../assets/images/role-icon/img_role_ (6).svg'
+import ImgRole7 from '../../assets/images/role-icon/img_role_ (7).svg'
+import ImgRole8 from '../../assets/images/role-icon/img_role_ (8).svg'
+import ImgRole9 from '../../assets/images/role-icon/img_role_ (9).svg'
+import ImgRole10 from '../../assets/images/role-icon/img_role_ (10).svg'
+import ImgRole11 from '../../assets/images/role-icon/img_role_ (11).svg'
+import ImgRole12 from '../../assets/images/role-icon/img_role_ (12).svg'
+import ImgRole13 from '../../assets/images/role-icon/img_role_ (13).svg'
+import ImgRole14 from '../../assets/images/role-icon/img_role_ (14).svg'
+import ImgRole15 from '../../assets/images/role-icon/img_role_ (15).svg'
+import ImgRole16 from '../../assets/images/role-icon/img_role_ (16).svg'
+import ImgRole17 from '../../assets/images/role-icon/img_role_ (17).svg'
+import ImgRole18 from '../../assets/images/role-icon/img_role_ (18).svg'
+import ImgRole19 from '../../assets/images/role-icon/img_role_ (19).svg'
+import ImgRole20 from '../../assets/images/role-icon/img_role_ (20).svg'
+import ImgRole21 from '../../assets/images/role-icon/img_role_ (21).svg'
+import ImgRole22 from '../../assets/images/role-icon/img_role_ (22).svg'
+import ImgRole23 from '../../assets/images/role-icon/img_role_ (23).svg'
+import ImgRole24 from '../../assets/images/role-icon/img_role_ (24).svg'
+
 const _skill = [
   {
     category: 'Developer',
@@ -851,4 +877,43 @@ const _skill = [
   // }
 ]
 
-export default _skill
+const _category_icon = {
+  Developer: '🧑🏻‍💻 Developer',
+  'IT Analyst': '📊 IT Analyst',
+  Tester: '🔍 Tester',
+  'Lead Engineer': '⚙️ Lead Engineer',
+  Engineer: '⚙️ Engineer',
+  'IT General': '🖥️ IT General',
+  'IT Support': '🖥️ IT Support',
+}
+
+const _role_icon = {
+  Programmer: <img className="d-block w-25" src={ImgRole13} alt="img_role_ (13)" />,
+  'Patch Engineer': <img className="d-block w-25" src={ImgRole1} alt="img_role_ (1)" />,
+  'UI/UX Designer': <img className="d-block w-25" src={ImgRole3} alt="img_role_ (3)" />,
+  'IT Solutions': <img className="d-block w-25" src={ImgRole4} alt="img_role_ (4)" />,
+  'Scrum Master': <img className="d-block w-25" src={ImgRole15} alt="img_role_ (15)" />,
+  SAD: <img className="d-block w-25" src={ImgRole17} alt="img_role_ (17)" />,
+  'Business Analyst': <img className="d-block w-25" src={ImgRole7} alt="img_role_ (7)" />,
+  'QA Analyst': <img className="d-block w-25" src={ImgRole8} alt="img_role_ (8)" />,
+  'Tester Leader': <img className="d-block w-25" src={ImgRole10} alt="img_role_ (10)" />,
+  'Problem Analyst': <img className="d-block w-25" src={ImgRole19} alt="img_role_ (19)" />,
+  'Performance Engineer': <img className="d-block w-25" src={ImgRole21} alt="img_role_ (21)" />,
+  'QA Tester': <img className="d-block w-25" src={ImgRole2} alt="img_role_ (2)" />,
+  'Senior Engineer': <img className="d-block w-25" src={ImgRole5} alt="img_role_ (5)" />,
+  'System Engineer': <img className="d-block w-25" src={ImgRole6} alt="img_role_ (6)" />,
+  'DevOps Engineer': <img className="d-block w-25" src={ImgRole9} alt="img_role_ (9)" />,
+  'Database Administrator': <img className="d-block w-25" src={ImgRole11} alt="img_role_ (11)" />,
+  'IT Human Capital': <img className="d-block w-25" src={ImgRole18} alt="img_role_ (18)" />,
+  'IT Procurement': <img className="d-block w-25" src={ImgRole12} alt="img_role_ (12)" />,
+  'IT Governance': <img className="d-block w-25" src={ImgRole20} alt="img_role_ (20)" />,
+  'Liaison Audit': <img className="d-block w-25" src={ImgRole22} alt="img_role_ (22)" />,
+  'Liaison Officer/ Supervisor': (
+    <img className="d-block w-25" src={ImgRole23} alt="img_role_ (23)" />
+  ),
+  Operator: <img className="d-block w-25" src={ImgRole14} alt="img_role_ (14)" />,
+  'Technical Writer': <img className="d-block w-25" src={ImgRole16} alt="img_role_ (16)" />,
+  'Admin/ Assistant': <img className="d-block w-25" src={ImgRole24} alt="img_role_ (24)" />,
+}
+
+export { _skill, _category_icon, _role_icon }
