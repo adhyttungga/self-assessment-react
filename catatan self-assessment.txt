@@ -1,0 +1,6 @@
+========== 2022.11.14 ==========
+- Ubah default values pada halaman SA1, SA2 (done)
+- Tambahkan useEffect pada halaman Pilih Role dan Pilih Skill
+- Hilangkan localStorage
+- Buat modal seperti sweetalert
+- Perbaiki CSS
